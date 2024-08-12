@@ -1,4 +1,4 @@
-package com.example.campusexpensemanager;
+package com.example.asm_2.Activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.asm_2.R;
 
 public class HomeDashBoardActivity extends AppCompatActivity {
     @Override

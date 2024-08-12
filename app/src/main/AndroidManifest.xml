@@ -14,9 +14,12 @@
         tools:targetApi="31">
         <activity android:name=".Activity.OverviewActivity"/>
         <activity android:name=".Activity.DashboardActivity"/>
+        <activity android:name=".Activity.RegisterPageActivity"/>
+        <activity android:name=".Activity.ProfileActivity"/>
+        <activity android:name=".Activity.LoginActivity"/>
 
         <activity
-            android:name=".Activity.ProfileActivity"
+            android:name=".Activity.StartingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
