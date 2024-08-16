@@ -29,43 +29,57 @@
         android:padding="16dp"
         android:layout_marginBottom="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etRemainingBudget"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remaining Budget: 9,100,000.00"
+            android:hint="Remaining Budget"
             android:textSize="18sp"
             android:paddingBottom="8dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/white"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etTotalBudget"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Budget: 11.1 M"
+            android:hint="Total Budget"
             android:textSize="18sp"
             android:paddingBottom="8dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/white"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/etTotalSpent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Spent: 2 M"
+            android:hint="Total Spent"
             android:textSize="18sp"
             android:paddingBottom="8dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/white"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etTimeRemaining"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Time Remaining: 28 days"
+            android:hint="Time Remaining"
             android:textSize="18sp"
             android:paddingBottom="16dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:inputType="date"
+            android:textColorHint="@color/white"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create a Budget"
-            android:backgroundTint="#424242"/>
+            android:backgroundTint="#424242"
+            android:id="@+id/create_budget_button"/>
     </LinearLayout>
 
     <!-- Bottom Section -->
@@ -84,22 +98,27 @@
             android:orientation="horizontal"
             android:paddingBottom="8dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/etFoodCategory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ăn uống"
+                android:hint="Ăn uống"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:textColorHint="@color/white"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/etFoodAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.00"
+                android:hint="0.00"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/white"/>
         </LinearLayout>
-
         <ProgressBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -108,7 +127,6 @@
             android:max="100"
             android:progressTint="#4CAF50"
             android:indeterminateTint="#4CAF50"/>
-
         <!-- Rent Category -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,20 +135,26 @@
             android:paddingTop="16dp"
             android:paddingBottom="8dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/etRentCategory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Thuê nhà"
+                android:hint="Thuê nhà"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:textColorHint="@color/white"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/etRentAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9,000,000.00"
+                android:hint="9,000,000.00"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/white"/>
         </LinearLayout>
 
         <ProgressBar
@@ -150,20 +174,26 @@
             android:paddingTop="16dp"
             android:paddingBottom="8dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/etElectricityCategory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Electricity"
+                android:hint="Electricity"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:textColorHint="@color/white"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/etElectricityAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="800,000.00"
+                android:hint="800,000.00"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/white"/>
         </LinearLayout>
 
         <ProgressBar
@@ -175,7 +205,6 @@
             android:progressTint="#4CAF50"
             android:indeterminateTint="#4CAF50"/>
 
-
         <!-- Water Category -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -184,20 +213,26 @@
             android:paddingTop="16dp"
             android:paddingBottom="8dp">
 
-            <TextView
+            <EditText
+                android:id="@+id/etWaterCategory"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Water"
+                android:hint="Water"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:textColorHint="@color/white"/>
 
-            <TextView
+            <EditText
+                android:id="@+id/etWaterAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.00"
+                android:hint="0.00"
                 android:textSize="16sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/white"/>
         </LinearLayout>
         <ProgressBar
             android:layout_width="match_parent"
@@ -208,6 +243,4 @@
             android:progressTint="#4CAF50"
             android:indeterminateTint="#4CAF50"/>
     </LinearLayout>
-
-
 </LinearLayout>
