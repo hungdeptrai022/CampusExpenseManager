@@ -1,6 +1,7 @@
 package com.example.asm_2.Activity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.example.asm_2.Activity.Models.User;
 import com.example.asm_2.R;
 
 public class LoginPageActivity extends AppCompatActivity {
-    private Button btnLogIn
+    private Button btnLogIn;
     private EditText edtEmail, edtPass;
     public UserDatabase userDatabase;
 
@@ -28,6 +29,7 @@ public class LoginPageActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtStartEmail);
         edtPass  =findViewById(R.id.edtStartPassword);
         userDatabase = new UserDatabase(LoginPageActivity.this);
+
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,12 +44,19 @@ public class LoginPageActivity extends AppCompatActivity {
                     return;
                 }
                 User data = userDatabase.getInfoUser(email, pass);
+
                 assert data != null;
                 if (data.getEmail()!=null){
                     //thanh cong
                     String gmail = data.getEmail();
+                    String username = data.getUsername();
+                    String phone = data.getPhone();
                     Intent intent = new Intent(LoginPageActivity.this, DashboardActivity.class);
+                    intent.putExtra("username",username);
+                    intent.putExtra("email",gmail);
+                    intent.putExtra("phone", phone);
                     Toast.makeText(LoginPageActivity.this, email, Toast.LENGTH_SHORT).show();
+
                     startActivity(intent);
 
                 }else{
@@ -55,7 +64,13 @@ public class LoginPageActivity extends AppCompatActivity {
                     Toast.makeText(LoginPageActivity.this, "Account Invalid", Toast.LENGTH_LONG).show();
                 }
 
-            }
+
+
+
+
+                }
+
+
         });
 
     }

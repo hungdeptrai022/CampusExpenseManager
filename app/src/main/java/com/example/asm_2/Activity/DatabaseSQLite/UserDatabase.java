@@ -1,5 +1,6 @@
 package com.example.asm_2.Activity.DatabaseSQLite;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -52,6 +53,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         return  insert;
     }
 
+        @SuppressLint("Range")
         public User getInfoUser(String username, String password){
             Cursor cursor = null;
             User user =new User();
@@ -83,6 +85,12 @@ public class UserDatabase extends SQLiteOpenHelper {
                     cursor.close();
             }
             return user;
+    }
+    public Cursor getUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(TABLE_NAME, new String[]{USERNAME_COL, EMAIL_COL,PHONE_COL },
+                EMAIL_COL + "=? AND " + PASSWORD_COL + "=?",
+                new String[]{email, password}, null, null, null);
     }
 
 }
