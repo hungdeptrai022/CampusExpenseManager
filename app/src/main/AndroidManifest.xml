@@ -17,6 +17,7 @@
         <activity android:name=".Activity.RegisterPageActivity"/>
         <activity android:name=".Activity.ProfileActivity"/>
         <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.EditProfileActivity" />
 
         <activity
             android:name=".Activity.StartingActivity"

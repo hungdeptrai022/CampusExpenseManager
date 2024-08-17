@@ -86,11 +86,18 @@ public class UserDatabase extends SQLiteOpenHelper {
             }
             return user;
     }
-    public Cursor getUser(String email, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.query(TABLE_NAME, new String[]{USERNAME_COL, EMAIL_COL,PHONE_COL },
-                EMAIL_COL + "=? AND " + PASSWORD_COL + "=?",
-                new String[]{email, password}, null, null, null);
-    }
 
+    // Update user information
+    public void updateUser(String originalEmail, String newUsername, String newPhone, String newEmail) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(USERNAME_COL, newUsername);
+        values.put(EMAIL_COL, newEmail);
+        values.put(PHONE_COL, newPhone);
+
+        // Update the user where the email matches the original email
+        db.update(TABLE_NAME, values, EMAIL_COL + " = ?", new String[]{originalEmail});
+        db.close();
+
+}
 }

@@ -99,4 +99,15 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/white"/>
 
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/logout_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/logout_button"
+        tools:layout_editor_absoluteY="358dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

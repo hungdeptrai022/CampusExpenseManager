@@ -63,14 +63,7 @@ public class LoginPageActivity extends AppCompatActivity {
                     //dang nhap linh tinh
                     Toast.makeText(LoginPageActivity.this, "Account Invalid", Toast.LENGTH_LONG).show();
                 }
-
-
-
-
-
                 }
-
-
         });
 
     }
