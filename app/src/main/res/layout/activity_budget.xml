@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,239 +10,137 @@
     android:textColor="#FFFFFF">
 
     <!-- Top Section -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Budget Currently in effect"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp"
-        android:textColor="@color/white"/>
 
     <!-- Mid-Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <Button
+            android:id="@+id/btnReturnFromExpenseOverview"
+            android:backgroundTint="#424242"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Return"
+            app:layout_constraintEnd_toStartOf="@+id/title"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp"
+            android:text="@string/expense_overview"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:id="@+id/mid_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/etRemainingBudget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Remaining Budget"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"
-            android:textColor="@color/white"
-            android:inputType="numberDecimal"
-            android:textColorHint="@color/white"/>
-
-        <EditText
-            android:id="@+id/etTotalBudget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Total Budget"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"
-            android:textColor="@color/white"
-            android:inputType="numberDecimal"
-            android:textColorHint="@color/white"/>
-
-
-        <EditText
-            android:id="@+id/etTotalSpent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Total Spent"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"
-            android:textColor="@color/white"
-            android:inputType="numberDecimal"
-            android:textColorHint="@color/white"/>
-
-        <EditText
-            android:id="@+id/etTimeRemaining"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Time Remaining"
-            android:textSize="18sp"
-            android:paddingBottom="16dp"
-            android:textColor="@color/white"
-            android:inputType="date"
-            android:textColorHint="@color/white"/>
-
-        <Button
+        <TextView
+            android:id="@+id/tvRemainingBudget"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create a Budget"
-            android:backgroundTint="#424242"
-            android:id="@+id/create_budget_button"/>
+            android:paddingBottom="8dp"
+            android:text="@string/remaining_budget1"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvTotalBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="@string/total_budget"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="116dp">
+
+            <Button
+                android:id="@+id/btnEditExpense"
+                android:layout_width="173dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#424242"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnCreateExpense"
+                android:layout_width="160dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#424242"
+                android:text="@string/create"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/btnEditExpense"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Expense Name"
+                android:inputType="text"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"/>
+            <!-- Expense Budget Input -->
+            <EditText
+                android:id="@+id/etBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Budget Amount"
+                android:textColorHint="@color/white"
+                android:inputType="numberDecimal"
+                android:textColor="@color/white"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Bottom Section -->
-    <LinearLayout
-        android:id="@+id/bottom_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
 
-        <!-- Food Category -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp">
 
-            <EditText
-                android:id="@+id/etFoodCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Ăn uống"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="text"
-                android:textColorHint="@color/white"/>
-
-            <EditText
-                android:id="@+id/etFoodAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="0.00"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="numberDecimal"
-                android:textColorHint="@color/white"/>
-        </LinearLayout>
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:progress="75"
-            android:max="100"
-            android:progressTint="#4CAF50"
-            android:indeterminateTint="#4CAF50"/>
-        <!-- Rent Category -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
-
-            <EditText
-                android:id="@+id/etRentCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Thuê nhà"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="text"
-                android:textColorHint="@color/white"/>
-
-            <EditText
-                android:id="@+id/etRentAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="9,000,000.00"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="numberDecimal"
-                android:textColorHint="@color/white"/>
-        </LinearLayout>
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:progress="75"
-            android:max="100"
-            android:progressTint="#4CAF50"
-            android:indeterminateTint="#4CAF50"/>
-
-        <!-- Electricity Category -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
-
-            <EditText
-                android:id="@+id/etElectricityCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Electricity"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="text"
-                android:textColorHint="@color/white"/>
-
-            <EditText
-                android:id="@+id/etElectricityAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="800,000.00"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="numberDecimal"
-                android:textColorHint="@color/white"/>
-        </LinearLayout>
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:progress="75"
-            android:max="100"
-            android:progressTint="#4CAF50"
-            android:indeterminateTint="#4CAF50"/>
-
-        <!-- Water Category -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp">
-
-            <EditText
-                android:id="@+id/etWaterCategory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Water"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="text"
-                android:textColorHint="@color/white"/>
-
-            <EditText
-                android:id="@+id/etWaterAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="0.00"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:inputType="numberDecimal"
-                android:textColorHint="@color/white"/>
-        </LinearLayout>
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:progress="75"
-            android:max="100"
-            android:progressTint="#4CAF50"
-            android:indeterminateTint="#4CAF50"/>
-    </LinearLayout>
 </LinearLayout>

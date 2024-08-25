@@ -103,22 +103,14 @@
                     android:layout_marginEnd="32dp"
                     android:padding="10dp"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     tools:ignore="TextFields"
                     android:hint="@string/enter_your_password"
                     android:textColorHint="#7C7878"
                     android:textColor="#ffffff"
                     android:background="@drawable/edittext_background"/>
 
-                <TextView
-                    android:id="@+id/txtStartForgetPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="@string/forget_your_password"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="#ffffff"/>
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnLoginToDashboard"
