@@ -1,4 +1,4 @@
-package com.example.connectdb;
+package com.example.campusexpensemanager.DatabaseSQLite;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -158,4 +158,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "INNER JOIN expenses ON transactions.expense_id = expenses.id";
         return db.rawQuery(query, null);
     }
+    // Method to edit an existing expense
+    public int editExpense(String expenseName, double newBudget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Fetch the current amount spent for the given expense
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_EXPENSE_BUDGET + " - " + COLUMN_EXPENSE_REMAINING + " FROM " + TABLE_EXPENSE + " WHERE " + COLUMN_EXPENSE_NAME + " = ?", new String[]{expenseName});
+        double amountSpent = 0;
+        if (cursor.moveToFirst()) {
+            amountSpent = cursor.getDouble(0);
+        }
+        cursor.close();
+
+        // Calculate the new remaining budget
+        double newRemaining = newBudget - amountSpent;
+
+        // Update the budget and remaining values
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EXPENSE_BUDGET, newBudget);
+        values.put(COLUMN_EXPENSE_REMAINING, newRemaining);
+
+        // Update the expense in the database
+        return db.update(TABLE_EXPENSE, values, COLUMN_EXPENSE_NAME + " = ?", new String[]{expenseName});
+    }
+
+    public void deleteExpense(int expenseId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("expenses", "id = ?", new String[]{String.valueOf(expenseId)});
+        db.delete("transactions", "expense_id = ?", new String[]{String.valueOf(expenseId)});
+        db.close();
+    }
+
+    public double getTotalBudget() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(budget) FROM expenses", null);
+        if (cursor.moveToFirst()) {
+            return cursor.getDouble(0);
+        }
+        cursor.close();
+        return 0;
+    }
+
+    public double getTotalRemaining() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(remaining) FROM expenses", null);
+        if (cursor.moveToFirst()) {
+            return cursor.getDouble(0);
+        }
+        cursor.close();
+        return 0;
+    }
+    public double getRemainingBudget(String expenseName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        double remainingBudget = 0.0;
+
+        // Truy vấn để lấy số tiền còn lại của expense dựa trên tên
+        String query = "SELECT remaining FROM expenses WHERE name = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{expenseName});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                remainingBudget = cursor.getDouble(cursor.getColumnIndex("remaining"));
+            }
+            cursor.close();
+        }
+
+        return remainingBudget;
+    }
+
+
 }
