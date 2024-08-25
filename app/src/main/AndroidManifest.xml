@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,24 +13,40 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ASM_2"
+        android:theme="@style/Theme.CampusExpenseManager"
         tools:targetApi="31">
-        <activity android:name=".Activity.OverviewActivity"/>
-        <activity android:name=".Activity.DashboardActivity"/>
-        <activity android:name=".Activity.RegisterPageActivity"/>
-        <activity android:name=".Activity.ProfileActivity"/>
-        <activity android:name=".Activity.LoginActivity"/>
-        <activity android:name=".Activity.EditProfileActivity" />
-
+        <activity android:name=".IT0602UI.MainActivity"/>
+        <activity android:name=".Activity.SecondActivity"/>
+        <activity android:name=".Activity.FirstActivity"/>
+        <activity android:name=".Activity.IntentSecondActivity"/>
+        <activity android:name=".Activity.IntentFirstActivity"/>
+        <activity android:name=".Activity.DashBoardActivity"/>
+        <activity android:name=".Activity.IntentThirdActivity"/>
+        <activity android:name=".Activity.SharedPreferencesActivity"/>
+        <activity android:name=".Activity.InternalStorageActivity"/>
+        <activity android:name=".ActivityNeeded.RegisterAccountActivity"/>
+        <activity android:name=".Activity.SignInActivity"/>
+        <activity android:name=".RegisterPageActivity"/>
+        <activity android:name=".LoginPageActivity"/>
+        <activity android:name=".OverViewActivity"/>
+<!--        <activity android:name=".StartingActivity"/>-->
+        <activity android:name=".DashBoardActivity"/>
+<!--        <activity android:name=".BudgetSettingActivity"/>-->
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".BudgetOverViewActivity"/>
+        <activity android:name=".BudgetEditingActivity"/>
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".ViewTransactionActivity"/>
+        <activity android:name=".AddTransactionActivity"/>
+        <activity android:name=".AddExpenseActivity"/>
         <activity
-            android:name=".Activity.StartingActivity"
+            android:name=".StartingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
