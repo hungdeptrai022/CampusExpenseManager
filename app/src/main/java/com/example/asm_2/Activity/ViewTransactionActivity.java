@@ -1,4 +1,4 @@
-package com.example.connectdb;
+package com.example.campusexpensemanager;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,25 +11,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.connectdb.Adapter.TransactionAdapter;
-import com.example.connectdb.Model.Transaction;
+import com.example.campusexpensemanager.Adapter.TransactionAdapter;
+import com.example.campusexpensemanager.DatabaseSQLite.DatabaseHelper;
+import com.example.campusexpensemanager.Models.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewTransactionActivity extends AppCompatActivity {
-        private RecyclerView recyclerView;
-        private TransactionAdapter adapter;
-        private Button btnAddRecord;
-        private DatabaseHelper dbHelper;
+    private RecyclerView recyclerView;
+    private TransactionAdapter adapter;
+    private Button btnAddRecord, btnReturn;
+    private DatabaseHelper dbHelper;
+    private static final int ADD_TRANSACTION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_transactions);
-        recyclerView = findViewById(R.id.rvTransactions);
+        setContentView(R.layout.activity_view_transaction);
+        recyclerView = findViewById(R.id.rvTransaction);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        btnAddRecord = findViewById(R.id.btnAddRecord);
+        btnAddRecord = findViewById(R.id.btn_add_transaction);
+        btnReturn = findViewById(R.id.btnReturnFromSpend);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String email = intent.getStringExtra("email");
+        String phone = intent.getStringExtra("phone");
+        String pass = intent.getStringExtra("pass");
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewTransactionActivity.this, DashBoardActivity.class);
+                intent.putExtra("username",username);
+                intent.putExtra("email",email);
+                intent.putExtra("phone", phone);
+                intent.putExtra("pass",pass);
+                startActivity(intent);
+            }
+        });
 
         dbHelper = new DatabaseHelper(this);
 
@@ -37,13 +56,29 @@ public class ViewTransactionActivity extends AppCompatActivity {
 
         adapter = new TransactionAdapter(transactionList);
         recyclerView.setAdapter(adapter);
+
         btnAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewTransactionActivity.this, AddTransactionActivity.class);
-                startActivity(intent);
+                intent.putExtra("username",username);
+                intent.putExtra("email",email);
+                intent.putExtra("phone", phone);
+                intent.putExtra("pass",pass);
+                startActivityForResult(intent, ADD_TRANSACTION_REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_TRANSACTION_REQUEST_CODE && resultCode == RESULT_OK) {
+            // Refresh the transaction list when returning from AddTransactionActivity
+            List<Transaction> transactionList = fetchTransactions();
+            adapter.updateTransactions(transactionList);
+        }
     }
 
     private List<Transaction> fetchTransactions(){
