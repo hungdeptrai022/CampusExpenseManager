@@ -1,4 +1,4 @@
-package com.example.connectdb.Adapter;
+package com.example.campusexpensemanager.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.connectdb.Model.Transaction;
-import com.example.connectdb.R;
+import com.example.campusexpensemanager.Models.Transaction;
+import com.example.campusexpensemanager.R;
 
 import java.util.List;
 
@@ -26,6 +26,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         // Inflate the layout for each transaction item
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.transaction_item, parent, false);
         return new TransactionViewHolder(view);
+    }
+    public void updateTransactions(List<Transaction> newTransactionList) {
+        this.transactionList = newTransactionList;
+        notifyDataSetChanged(); // Notify the adapter that the data has changed
     }
 
     @Override
